@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FB Video Saver Ultra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Premium tool to download Facebook videos in HD quality. Fast, secure, and unlimited downloads."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="card">
+        <button class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+        <div class="card-header">
+          <div class="logo">
+            <i class="fab fa-facebook-f"></i>
+          </div>
+          <h1>Facebook Video Downloader Ultra</h1>
+          <p class="subtitle">
+            Download HD Photos/videos from Facebook instantly with our premium
+            tool
+          </p>
+          <div class="divider"></div>
+        </div>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <ul class="messages">
+          {% for category, message in messages %}
+          <li class="message {{ category }}">
+            <i
+              class="fas fa-{% if category == 'success' %}check-circle{% else %}exclamation-circle{% endif %}"
+            ></i>
+            {{ message }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+
+        <div class="features">
+          <div class="feature">
+            <i class="fas fa-bolt"></i>
+            <div class="feature-title">Ultra Fast</div>
+            <div class="feature-desc">Downloads in seconds</div>
+          </div>
+          <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <div class="feature-title">Secure</div>
+            <div class="feature-desc">No data stored</div>
+          </div>
+          <div class="feature">
+            <i class="fas fa-infinity"></i>
+            <div class="feature-title">Unlimited</div>
+            <div class="feature-desc">No daily limits</div>
+          </div>
+        </div>
+
+        <form method="POST" id="downloadForm">
+          <div class="input-group">
+            <label for="videoUrl" class="input-label">Facebook Video URL</label>
+            <input
+              type="url"
+              id="videoUrl"
+              name="video_url"
+              placeholder="https://www.facebook.com/ma4D1/...."
+              required
+            />
+            <i id="link-icon" class="fas fa-link input-icon"></i>
+          </div>
+          <button type="submit" class="btn" id="submitBtn">
+            <i class="fas fa-download"></i> Download Now
+          </button>
+        </form>
+
+        {% if download_link %}
+        <div
+          class="download-box animate__animated animate__pulse animate__infinite animate__slower"
+        >
+          <div class="download-box-header">
+            <i class="fas fa-check-circle"></i>
+            <h3>Your video is ready!</h3>
+          </div>
+          <a
+            href="{{ download_link }}"
+            download
+            class="download-btn"
+            id="downloadLink"
+          >
+            <i class="fas fa-cloud-download-alt"></i> Download Video (HD)
+          </a>
+        </div>
+        {% endif %}
+
+        <div class="footer">
+          <p>FB Video Saver Ultra. © 2025</p>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link"
+              >Contact Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 
+    <div class="developer-profile">
+      <button class="developer-toggle" id="devToggle"></button>
+      <div class="developer-card" id="devCard">
+        <div class="developer-header"></div>
+        <div class="developer-bio">
+          Creator of FB Video Saver Pro. Passionate about building tools that
+          make life easier.
+        </div>
+        <div class="developer-socials">
+          <a target="_blank"> </a>
+          <a target="_blank"> </a>
+          <a
+            href="https://github.com/Mahdi-hasan-shuvo"
+            class="social-link"
+            target="_blank"
+          >
+            <i class="fab fa-github social-icon"></i>
+            <span class="social-name">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
